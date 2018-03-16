@@ -1,9 +1,9 @@
 import React from 'react'
-import { Platform } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 import DeckListNavigator from '../DeckListNavigator'
 import NewDeck from '../NewDeck'
+import { black, white } from '../../helpers/colors'
 
 const Tabs = TabNavigator(
   {
@@ -31,10 +31,10 @@ const Tabs = TabNavigator(
       header: null
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === 'ios' ? '#333' : '#fff',
+      activeTintColor: black,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? '#fff' : '#333',
+        backgroundColor: white,
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,
