@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { fetchDecks } from '../../actions'
 
 class DeckList extends Component {
+  componentDidMount() {
+    this.props.fetchDecks()
+  }
+
   render() {
     return (
       <View>
@@ -21,4 +27,10 @@ class DeckList extends Component {
   }
 }
 
-export default DeckList
+const mapDispatchToProps = dispatch => ({
+  fetchDecks() {
+    dispatch(fetchDecks())
+  }
+})
+
+export default connect(null, mapDispatchToProps)(DeckList)

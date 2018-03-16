@@ -1,23 +1,17 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
+import { Provider } from 'react-redux'
 import DeckStatusBar from './src/components/DeckStatusBar'
 import Tabs from './src/components/Tabs'
-// import { fetchDecks } from './utils/api'
+import store from './src/store'
 
-class App extends Component {
-  // componentDidMount() {
-  //   fetchDecks()
-  //     .then(decks => this.props.dispatch(receiveDecks(decks)))
-  // }
-
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <DeckStatusBar backgroundColor={'#aaa'} />
-        <Tabs />
-      </View>
-    )
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <View style={{flex: 1}}>
+      <DeckStatusBar backgroundColor={'#aaa'} />
+      <Tabs />
+    </View>
+  </Provider>
+)
 
 export default App
