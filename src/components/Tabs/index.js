@@ -3,7 +3,7 @@ import { TabNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 import DeckListNavigator from '../DeckListNavigator'
 import NewDeck from '../NewDeck'
-import { black, white } from '../../helpers/colors'
+import { black, white } from '../../utils/colors'
 
 const Tabs = TabNavigator(
   {
