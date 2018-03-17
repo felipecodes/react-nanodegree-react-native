@@ -1,4 +1,5 @@
 import * as api from '../utils/api'
+import uuid from 'uuid/v1'
 import { RECEIVE_DECKS, CREATE_DECK } from '../constants'
 
 const receiveDecks = decks => ({
@@ -6,21 +7,27 @@ const receiveDecks = decks => ({
   decks
 })
 
-const createDeck = text => ({
+const createDeck = deck => ({
   type: CREATE_DECK,
-  deck: text
+  deck
 })
 
 export const fetchDecks = () => dispatch => (
   api.fetchDecks()
     .then(decks => {
       if (decks) {
-        dispatch(receiveDecks(decks))
+        dispatch(receiveDecks(JSON.parse(decks)))
       }
     })
 )
 
-export const createDeckAsync = text => dispatch => (
-  api.create(text)
-    .then(() => dispatch(createDeck(text)))
-)
+export const createDeckAsync = text => dispatch => {
+  const deck = {
+    id: uuid(),
+    title: text,
+    questions: []
+  }
+
+  return api.create(deck)
+    .then(() => dispatch(createDeck(deck)))
+}
