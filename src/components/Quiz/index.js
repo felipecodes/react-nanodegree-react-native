@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import Button from '../Button'
 
 class Quiz extends Component {
   render () {
-    const questions = this.props.navigation.getParam('questions')
+    const deck = this.props.navigation.getParam('deck')
     return (
       <View>
-        <Text>Quiz</Text>
+        <Text>{deck.title}</Text>
+        <Text>{deck.questions.length} cards</Text>
+        <Button onPress={() => {}}>Add Card</Button>
+        <Button onPress={() => {}}>Start Quiz</Button>
       </View>
     )
   }

@@ -14,7 +14,7 @@ const Deck = props => (
       style={styles.button}
       onPress={() =>
         props.navigation.navigate('Quiz', {
-          questions: props.deck.questions
+          deck: props.deck
         })
       }
     >

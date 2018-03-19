@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Keyboard, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
+import Button from '../Button'
 import { createDeckAsync } from '../../actions'
-import { black, white, danger } from '../../utils/colors'
+import { black, danger } from '../../utils/colors'
 
 class NewDeck extends Component {
   constructor(props) {
@@ -53,12 +54,9 @@ class NewDeck extends Component {
             <Text style={styles.errorMessage}>{ errors.deck }</Text>
           )}
         </View>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.createDeck}
-        >
+        <Button onPress={this.createDeck}>
           <Text style={styles.buttonText}>Confirm</Text>
-        </TouchableHighlight>
+        </Button>
       </View>
     )
   }
@@ -89,20 +87,6 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: danger
-  },
-  button: {
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: black,
-    borderRadius: 7,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 16,
-    paddingLeft: 16,
-    marginTop: 32
-  },
-  buttonText: {
-    fontSize: 16
   }
 })
 
