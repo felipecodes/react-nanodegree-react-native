@@ -7,13 +7,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: black,
     borderRadius: 7,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 16,
-    paddingLeft: 16,
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingRight: 24,
+    paddingLeft: 24,
     marginTop: 32
   },
   buttonText: {
+    textAlign: 'center',
     fontSize: 16
   }
 })

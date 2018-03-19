@@ -13,7 +13,7 @@ const Deck = props => (
     <TouchableOpacity
       style={styles.button}
       onPress={() =>
-        props.navigation.navigate('Quiz', {
+        props.navigation.navigate('QuizHome', {
           deck: props.deck
         })
       }

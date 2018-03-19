@@ -3,7 +3,7 @@ import { Keyboard, View, Text, TextInput, StyleSheet, TouchableHighlight } from 
 import { connect } from 'react-redux'
 import Button from '../Button'
 import { createDeckAsync } from '../../actions'
-import { black, danger } from '../../utils/colors'
+import { black, gray, danger } from '../../utils/colors'
 
 class NewDeck extends Component {
   constructor(props) {
@@ -54,7 +54,10 @@ class NewDeck extends Component {
             <Text style={styles.errorMessage}>{ errors.deck }</Text>
           )}
         </View>
-        <Button onPress={this.createDeck}>
+        <Button
+          underlayColor={gray}
+          onPress={this.createDeck}
+        >
           <Text style={styles.buttonText}>Confirm</Text>
         </Button>
       </View>

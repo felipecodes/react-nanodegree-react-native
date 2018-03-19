@@ -2,12 +2,20 @@ import React from 'react'
 import { TouchableHighlight, Text } from 'react-native'
 import styles from './styles'
 
-const Button = props => (
+const Button = ({ style, buttonTextStyles, ...props }) => (
   <TouchableHighlight
-    style={styles.button}
-    onPress={props.onPress}
+    style={[
+      styles.button,
+      style && style
+    ]}
+    {...props}
   >
-    <Text style={styles.buttonText}>{props.children}</Text>
+    <Text style={[
+      styles.buttonText,
+      buttonTextStyles && buttonTextStyles
+    ]}>
+      {props.children}
+    </Text>
   </TouchableHighlight>
 )
 
