@@ -30,7 +30,7 @@ class NewDeck extends Component {
       this.setState(this.initialValues())
       return this.props.createDeck(deck)
         .then(() => {
-          this.props.navigation.goBack()
+          this.props.navigation.popToTop('DeckList')
         })
     }
 
