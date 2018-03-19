@@ -13,7 +13,9 @@ const Deck = props => (
     <TouchableOpacity
       style={styles.button}
       onPress={() =>
-        props.navigation.navigate('Quiz')
+        props.navigation.navigate('Quiz', {
+          questions: props.deck.questions
+        })
       }
     >
       <Text style={styles.title}>{props.deck.title}</Text>

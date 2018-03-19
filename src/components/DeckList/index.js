@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { fetchDecks } from '../../actions'
 import Deck from '../Deck'
 
@@ -11,7 +11,7 @@ class DeckList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {this.props.decks.map((deck, index) => (
           <Deck
             key={deck.id}
@@ -20,7 +20,7 @@ class DeckList extends Component {
             {...this.props}
           />
         ))}
-      </View>
+      </ScrollView>
     )
   }
 }
