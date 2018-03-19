@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { fetchDecks } from '../../actions'
+import Deck from '../Deck'
 
 class DeckList extends Component {
   componentDidMount() {
@@ -10,22 +11,23 @@ class DeckList extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Deck List</Text>
-        <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate(
-              'Deck',
-              { name: 'React\'s Concepts' }
-            )
-          }
-        >
-          <Text>GO to deck</Text>
-        </TouchableOpacity>
+      <View style={styles.container}>
+        {this.props.decks.map((deck, index) => (
+          <Deck
+            key={deck.id}
+            index={index}
+            deck={deck}
+            {...this.props}
+          />
+        ))}
       </View>
     )
   }
 }
+
+const mapStateToProps = ({ decks }) => ({
+  decks: Object.keys(decks).map(key => decks[key])
+})
 
 const mapDispatchToProps = dispatch => ({
   fetchDecks() {
@@ -33,4 +35,14 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(DeckList)
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%'
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckList)
