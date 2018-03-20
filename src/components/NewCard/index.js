@@ -30,11 +30,19 @@ export class NewCard extends Component {
         values: {
           ...state.values,
           [name]: text
+        },
+        errors: {
+          ...state.errors,
+          [name]: text ? '' : 'field is required'
         }
       }))
     }
 
     this.setState(state => ({
+      values: {
+        ...state.values,
+        [name]: text
+      },
       errors: {
         ...state.errors,
         [name]: 'field is required'
