@@ -1,10 +1,26 @@
 import * as api from '../utils/api'
 import uuid from 'uuid/v1'
-import { RECEIVE_DECKS, CREATE_DECK } from '../constants'
+import {
+  ADD_ERROR_MESSAGE,
+  RECEIVE_DECKS,
+  CREATE_DECK,
+  ADD_CARD
+} from '../constants'
 
 const receiveDecks = decks => ({
   type: RECEIVE_DECKS,
   decks
+})
+
+const addCard = (deckId, card) => ({
+  type: ADD_CARD,
+  deckId,
+  card,
+})
+
+const AddErrorMessage = message => ({
+  type: ADD_ERROR_MESSAGE,
+  message
 })
 
 const createDeck = deck => ({
@@ -30,4 +46,19 @@ export const createDeckAsync = text => dispatch => {
 
   return api.create(deck)
     .then(() => dispatch(createDeck(deck)))
+}
+
+export const addCardAsync = (deckId, card) => (dispatch, getState) => {
+  const { decks } = getState()
+  const { questions } = decks[deckId]
+  const cardAlreadyExists = (questions.filter(_ => (
+    _.question === card.question
+  )).length > 0)
+
+  if (cardAlreadyExists) {
+    return dispatch(AddErrorMessage('This question already exists'))
+  }
+
+  return api.addCard(deckId, card)
+    .then(() => dispatch(addCard(deckId, card)))
 }

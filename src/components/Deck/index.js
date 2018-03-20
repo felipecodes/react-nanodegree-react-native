@@ -14,13 +14,14 @@ const Deck = props => (
       style={styles.button}
       onPress={() =>
         props.navigation.navigate('QuizHome', {
-          deck: props.deck
+          deckId: props.deck.id
         })
       }
     >
       <Text style={styles.title}>{props.deck.title}</Text>
       <Text style={styles.cards}>
-        {props.deck.questions.length} cards
+        {props.deck.questions.length}
+        {` card${props.deck.questions.length > 1 ? 's' : ''}`}
       </Text>
     </TouchableOpacity>
   </View>

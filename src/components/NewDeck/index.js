@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Keyboard, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native'
+import { Keyboard, View, Text, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 import Button from '../Button'
+import TextField from '../TextField'
 import { createDeckAsync } from '../../actions'
 import { black, gray, danger } from '../../utils/colors'
+import styles from './styles'
 
 class NewDeck extends Component {
   constructor(props) {
@@ -44,16 +46,11 @@ class NewDeck extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>What is the title of your new deck?</Text>
-        <View>
-          <TextInput
-            style={[styles.fieldText, errors.deck && styles.fieldError]}
-            onChangeText={this.handleChangeText}
-            value={values.deck}
-          />
-          {errors.deck && (
-            <Text style={styles.errorMessage}>{ errors.deck }</Text>
-          )}
-        </View>
+        <TextField
+          value={values.deck}
+          error={errors.deck}
+          onChangeText={this.handleChangeText}
+        />
         <Button
           underlayColor={gray}
           onPress={this.createDeck}
@@ -64,34 +61,6 @@ class NewDeck extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    paddingRight: 16,
-    paddingLeft: 16,
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 10,
-  },
-  fieldText: {
-    height: 40,
-    paddingRight: 16,
-    paddingLeft: 16,
-    borderRadius: 8,
-    borderColor: black,
-    borderWidth: 1
-  },
-  fieldError: {
-    borderWidth: 1,
-    borderColor: danger
-  },
-  errorMessage: {
-    color: danger
-  }
-})
 
 const mapDispatchToProps = dispatch => ({
   createDeck(text) {

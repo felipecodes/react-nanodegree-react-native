@@ -14,3 +14,16 @@ export const create = deck => (
     [deck.id]: deck
   }))
 )
+
+export const addCard = (deckId, card) => {
+  return AsyncStorage.getItem(DECKS_KEY)
+    .then(JSON.parse)
+    .then(decks => {
+      decks[deckId].questions = [
+        card,
+        ...decks[deckId].questions
+      ]
+
+      return AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decks))
+    })
+}
