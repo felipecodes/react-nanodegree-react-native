@@ -26,7 +26,7 @@ const QuizHome = props => (
     <Button
       style={styles.startQuizStyles}
       buttonTextStyles={styles.startQuizTextStyles}
-      onPress={() => props.navigation.navigate('Quiz')}
+      onPress={() => props.navigation.navigate('Quiz', { deckId: props.deck.id })}
     >
       Start Quiz
     </Button>
