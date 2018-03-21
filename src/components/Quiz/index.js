@@ -82,6 +82,24 @@ class Quiz extends Component {
       <View style={styles.scoreContainer}>
         <Text style={styles.score}>{score}</Text>
         <Text style={styles.scoreTitle}>Your score</Text>
+        <Button
+          onPress={() => {
+            this.props.navigation.replace('Quiz', {
+              deckId: this.props.navigation.getParam('deckId')
+            })
+          }}
+        >
+          Restart quiz
+        </Button>
+        <Button
+          onPress={() => {
+            this.props.navigation.push('QuizHome', {
+              deckId: this.props.navigation.getParam('deckId')
+            })
+          }}
+        >
+          Back to deck
+        </Button>
       </View>
     )
   }
