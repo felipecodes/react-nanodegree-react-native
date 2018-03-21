@@ -5,6 +5,8 @@
 
 ## Instructions
 
+**App tested in IOS platform**
+
 ``` bash
 git clone git@github.com:thefelpes/react-nanodegree-react-native.git
 cd react-nanodegree-react-native
