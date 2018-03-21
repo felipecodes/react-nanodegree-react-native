@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Button from '../Button'
 import styles from './styles'
+import { clearLocalNotification } from '../../utils/notification'
 
 class Quiz extends Component {
   constructor(props) {
@@ -17,23 +18,19 @@ class Quiz extends Component {
     }
   }
 
-  handleClickCorrect = () => {
+  handleClick = ({ isCorrect }) => {
     const card = this.props.questions.shift()
+
+    if (!card) {
+      clearLocalNotification()
+    }
+
     this.setState(({ score }) => ({
       showAnswer: false,
       question: ++this.state.question,
-      score: ++score,
+      score: isCorrect ? ++score : score,
       card
     }))
-  }
-
-  handleClickIncorrect = () => {
-    const card = this.props.questions.shift()
-    this.setState({
-      question: ++this.state.question,
-      showAnswer: false,
-      card
-    })
   }
 
   showAnswer = () => {
@@ -62,7 +59,7 @@ class Quiz extends Component {
                 <Button
                   style={styles.correctButton}
                   buttonTextStyles={styles.buttonText}
-                  onPress={this.handleClickCorrect}
+                  onPress={() => this.handleClick({ isCorrect: true })}
                 >
                   Correct
                 </Button>
@@ -70,7 +67,7 @@ class Quiz extends Component {
                 <Button
                   style={styles.incorrectButton}
                   buttonTextStyles={styles.buttonText}
-                  onPress={this.handleClickIncorrect}
+                  onPress={() => this.handleClick({ isCorrect: false })}
                 >
                   <Text>Incorrect</Text>
                 </Button>
